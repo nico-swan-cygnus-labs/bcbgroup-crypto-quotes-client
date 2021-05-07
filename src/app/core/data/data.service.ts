@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
@@ -19,10 +20,12 @@ export class DataService {
 
     /**
      * Get all the default quotes from te
-     * @returns { Observable<Object> } The data from the API request
+     * @returns { Observable<Map<string, Map<string, string>>> } The data from the API request
      */
-    getAllQuotes(): Observable<Object> {
-        return this.http.get(`${this.apiBase}/api/quotes`, { headers: this.corsHeaders });
+    getAllQuotes(): Observable<Map<string, Map<string, string>>> {
+        return this.http.get(`${this.apiBase}/api/quotes`, { headers: this.corsHeaders })
+        .pipe(map((response: Map<string, Map<string, string>>)  => response))
+
     }
 
     /**
@@ -39,14 +42,15 @@ export class DataService {
      * Get quotes for a list of symbols and currency
      * @param { string[] } _symbols A list of crypto symbols for the coins
      * @param { string[] } _currencies A list or currency symbols for the coins
-     * @returns { Observable<Object> }The data from the API request
+     * @returns { Observable<Map<string, Map<string, string>>> }The data from the API request
      */
-    getQuotes(_symbols: string[], _currencies: string[]): Observable<Object> {
+    getQuotes(_symbols: string[], _currencies: string[]): Observable<Map<string, Map<string, string>>> {
         const symbols = _symbols.join(',') || ['BTC', 'ETH'];
         const currencies = _currencies.join(',') || ['USD', 'GBP'];
         return this.http.get(`${this.apiBase}/api/quotes?symbols=${symbols}&currencies=${currencies}`, {
             headers: this.corsHeaders
-        });
+        })
+        .pipe(map((response: Map<string, Map<string, string>>)  => response));
     }
 
     /**

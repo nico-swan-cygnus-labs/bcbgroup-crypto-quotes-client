@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import * as io from 'socket.io-client';
 import { environment } from '../../../environments/environment';
+import * as fromRoot from '../../core/store';
 import { Quote } from '../interfaces/quote.interface';
 
 @Injectable()
@@ -14,7 +16,7 @@ export class DataStreamService {
      * This class manages the connection to the quotes server socket and populate the
      * application state with the latest values
      */
-    constructor() {
+    constructor(private store: Store<fromRoot.State>) {
         // Connect to the server socket
         this.socket = io.connect(environment.socket.url, environment.socket.config);
         // Manage client connections
@@ -68,7 +70,11 @@ export class DataStreamService {
      */
     private onUpdateQuote(_quote: Quote): void {
         // Get all quotes
-        const quotes: Map<string, Map<string, Quote>> = this.cryptoQuotes$.getValue();
+        let state: fromRoot.State;
+        this.store.subscribe(s => state = s)
+        const quotes: Map<string, Map<string, Quote>> = state.ui.cryptoQuotes;
+        this.cryptoQuotes$ = new BehaviorSubject(quotes);
+        
         const newPrice = _quote.price;
         let amounts: Map<string, Quote>;
 
@@ -89,7 +95,7 @@ export class DataStreamService {
         }
 
         // If quote in stream state
-        if (quotes.has(_quote.symbol) ) {
+        if (quotes.has(_quote.symbol)  ) {
             console.debug(`Quote found in stream state. ${_quote.symbol}`);
             amounts = quotes.get(_quote.symbol);
 

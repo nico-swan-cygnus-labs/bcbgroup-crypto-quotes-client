@@ -51,7 +51,7 @@ export class QuotePriceComponent implements OnInit {
     // Helper function for template
     setColor(_direction: string) {
         // Set the direction color
-            switch(_direction.toLocaleUpperCase()) {
+            switch(_direction || 'UNCHANGED') {
                 case 'UP' : 
                     this.directionColor = 'price-up';
                     break;

@@ -14,6 +14,8 @@ import { DataService } from './core/data/data.service';
 import * as fromRoot from './core/store';
 import { QuotesEffects } from './core/store/effects/quotes.effects';
 import { UiModule } from './ui/ui.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { UiModule } from './ui/ui.module';
     HttpClientModule,
     EffectsModule.forRoot([QuotesEffects]),
     StoreModule.forRoot(fromRoot.reducers),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [DataService, DataStreamService],
   bootstrap: [AppComponent]

@@ -3,7 +3,8 @@
         <div fxFlex="10">
             <span class="coin-symbol">{{ symbol }}</span>
         </div>
-        <mat-chip-list cdkDropListOrientation="horizontal" class="quote-row-price-list" fxFlex="90">
+        <span style="flex: 1 1 auto;"></span>
+        <mat-chip-list cdkDropListOrientation="horizontal" class="quote-row-price-list">
             <div *ngFor="let quote of quotes | keyvalue">
                 <app-quote-price [symbol]="quote.key" [price]="quote.value.price" [direction]="quote.value.direction">
                 </app-quote-price>
