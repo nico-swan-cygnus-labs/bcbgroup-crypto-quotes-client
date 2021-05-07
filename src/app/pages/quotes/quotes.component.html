@@ -1,0 +1,10 @@
+<div class="quote-container">
+  <div style="height: 100%; padding-top: 80px; padding-bottom: 80px;">
+    <div *ngIf="quotes$ | async as symbols">
+      <mat-chip-list fxLayout="column" fxLayoutAlign="space-around center">
+        <app-quote-row *ngFor="let quote of symbols | keyvalue" [symbol]="quote.key" [quotes]="quote.value">
+        </app-quote-row>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>

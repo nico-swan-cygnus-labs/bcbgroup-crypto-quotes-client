@@ -1,0 +1,17 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="accent-0" fxLayout="row" fxLayoutAlign="space-between center">
+      <img src=" assets/logo.png" height="40" class="d-inline-block align-top" alt="BCB Group Logo" loading="lazy" />
+      <span style="flex: 1 1 auto;"></span>
+      <span>
+        <h1>
+          Crypto Quotes
+        </h1>
+      </span>
+      <span style="flex: 1 1 auto;"></span>
+      <span [ngClass]="socketStatus$ | async"></span>
+    </mat-toolbar>
+    <router-outlet>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

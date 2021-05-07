@@ -1,0 +1,13 @@
+<mat-chip>
+    <div fxLayout="row" fxLayoutAlign="space-around">
+        <ng-template [ngIf]="isIcon()" [ngIfElse]="strIcon">
+            <fa-icon [icon]="icon" class="currency-symbol"></fa-icon>
+        </ng-template>
+
+        <ng-template #strIcon>
+            <div class="currency-symbol"><b>{{icon}}</b></div>
+        </ng-template>
+
+        <span [ngClass]="setColor(direction)">{{price}}</span>
+    </div>
+</mat-chip>

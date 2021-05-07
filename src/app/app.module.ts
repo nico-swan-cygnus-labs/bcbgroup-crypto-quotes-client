@@ -1,0 +1,36 @@
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+//import { ChartsModule } from 'ng2-charts';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { DataStreamService } from './core/data/data-stream.service';
+import { DataService } from './core/data/data.service';
+import * as fromRoot from './core/store';
+import { QuotesEffects } from './core/store/effects/quotes.effects';
+import { UiModule } from './ui/ui.module';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    UiModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FontAwesomeModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    EffectsModule.forRoot([QuotesEffects]),
+    StoreModule.forRoot(fromRoot.reducers),
+  ],
+  providers: [DataService, DataStreamService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
