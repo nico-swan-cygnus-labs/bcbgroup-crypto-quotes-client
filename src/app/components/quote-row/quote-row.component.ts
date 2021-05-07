@@ -12,8 +12,6 @@ export class QuoteRowComponent implements OnInit {
     constructor() { }
 
     // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-    ngOnInit(): void { 
-        console.log(this.symbol);
-    }
+    ngOnInit(): void {}
 
 }
