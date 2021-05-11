@@ -10,6 +10,7 @@ export class QuotePriceComponent implements OnInit {
     @Input() price: number;
     @Input() symbol: string;
     @Input() direction: string;
+    @Input() routeLink: string;
     
     icon: IconDefinition | string;
     directionColor: string;

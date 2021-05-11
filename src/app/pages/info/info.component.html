@@ -1,0 +1,19 @@
+<div class="info-container">
+  <div style="height: 100%; padding-top: 20px; padding-bottom: 20px;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{symbol}}</mat-card-title>
+        <mat-card-subtitle>Information</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="history$ | async as historyDataMap">
+          <app-line-chart *ngFor="let historyData of historyDataMap | keyvalue" [data]="historyData"></app-line-chart>
+        </div>
+        <div *ngIf="signals$ | async as signalsDataMap">
+          <app-cc-signals *ngFor="let signalData of signalsDataMap | keyvalue" [data]="signalData.value">
+          </app-cc-signals>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

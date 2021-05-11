@@ -6,7 +6,7 @@
         <span style="flex: 1 1 auto;"></span>
         <mat-chip-list cdkDropListOrientation="horizontal" class="quote-row-price-list">
             <div *ngFor="let quote of quotes | keyvalue">
-                <app-quote-price [symbol]="quote.key" [price]="quote.value.price" [direction]="quote.value.direction">
+                <app-quote-price [symbol]="quote.key" [price]="quote.value.price" [direction]="quote.value.direction" [routeLink]="'/info/'+symbol+'/'+ quote.key">
                 </app-quote-price>
             </div>
         </mat-chip-list>

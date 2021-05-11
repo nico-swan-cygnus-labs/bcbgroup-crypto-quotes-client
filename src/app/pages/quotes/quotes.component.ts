@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Quote } from 'app/core/interfaces/quote.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DataStreamService } from '../../core/data/data-stream.service';
 import * as fromRoot from '../../core/store';
+import * as QuotesActions from '../../core/store/actions/quotes.actions';
 
 @Component({
     selector: 'app-quotes',
@@ -16,7 +18,9 @@ export class QuotesComponent implements OnInit {
 
     constructor(
         private dataStreamService: DataStreamService,
-        private store: Store<fromRoot.State>
+        private store: Store<fromRoot.State>,
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -25,8 +29,8 @@ export class QuotesComponent implements OnInit {
             .select(fromRoot.getQuotes)
             .pipe(map((quote: Map<string, Map<string, Quote>>) => quote));
 
-        // this.dataStreamService.cryptoQuotes$
-        //     .pipe(map((quotes) => new QuotesActions.SetQuotes(quotes)))
-        //     .subscribe(this.store);
+        this.dataStreamService.cryptoQuotes$
+            .pipe(map((quotes) => new QuotesActions.SetQuotes(quotes)))
+            .subscribe(this.store);
     }
 }

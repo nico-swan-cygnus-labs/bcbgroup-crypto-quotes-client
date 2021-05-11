@@ -60,8 +60,8 @@ export class DataService {
      * @param { number } _length the number of days
      * @returns { Observable<Object> }The data from the API request
      */
-    getDailyHistoryQuote(_symbol: string, _currency: string, _length?: string): Observable<Object> {
-        let queryStr = `/quotes/history/daily/${_symbol}/${_currency}`;
+    getDailyHistoryQuote(_symbol: string, _currency: string, _length?: number): Observable<Object> {
+        let queryStr = `/api/quotes/history/daily/${_symbol}/${_currency}`;
         if (_length) {
             queryStr += `?length=${_length}`;
         }
@@ -74,6 +74,7 @@ export class DataService {
      * @returns { Observable<Object> } The data from the API request
      */
     getTradingSignals(_symbol: string): Observable<Object> {
-        return this.http.get(`${this.apiBase}/api/trading/signal/${_symbol}`, { headers: this.corsHeaders });
+        const result = this.http.get(`${this.apiBase}/api/trading/signal/${_symbol}`, { headers: this.corsHeaders });
+        return result
     }
 }

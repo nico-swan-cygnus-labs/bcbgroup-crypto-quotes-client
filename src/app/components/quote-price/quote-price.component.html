@@ -1,4 +1,4 @@
-<mat-chip>
+<mat-chip [routerLink]="[routeLink]">
     <div fxLayout="row" fxLayoutAlign="space-around">
         <ng-template [ngIf]="isIcon()" [ngIfElse]="strIcon">
             <fa-icon [icon]="icon" class="currency-symbol"></fa-icon>

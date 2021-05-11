@@ -11,6 +11,10 @@ const routes: Routes = [
             {
                 path: 'quotes',
                 loadChildren: () => import('./pages/quotes/quotes.module').then((m) => m.QuotesModule)
+            },
+            {
+                path: 'info/:symbol/:currency',
+                loadChildren: () => import('./pages/info/Info.module').then((m) => m.InfoModule)
             }
         ]
     }

@@ -6,6 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { environment } from '../environments/environment';
 //import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,8 +17,6 @@ import { DataService } from './core/data/data.service';
 import * as fromRoot from './core/store';
 import { QuotesEffects } from './core/store/effects/quotes.effects';
 import { UiModule } from './ui/ui.module';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     FlexLayoutModule,
     HttpClientModule,
+    NgxChartsModule,
     EffectsModule.forRoot([QuotesEffects]),
     StoreModule.forRoot(fromRoot.reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

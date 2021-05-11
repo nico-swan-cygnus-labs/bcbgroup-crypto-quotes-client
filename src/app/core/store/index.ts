@@ -30,3 +30,13 @@ export const getSocketStatus = createSelector(getUIState, fromQuotes.getSocketSt
  * Get only quotes data
  */
 export const getQuotes = createSelector(getUIState, fromQuotes.getQuotes);
+
+/**
+ * Get history for a coin
+ */
+export const getDailyHistoryQuote = createSelector(getUIState, fromQuotes.getDailyHistoryQuote);
+
+/**
+ * Get trading signals for a coin
+ */
+export const getTradingSignals = createSelector(getUIState, fromQuotes.getTradingSignals);
