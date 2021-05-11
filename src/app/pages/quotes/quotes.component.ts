@@ -24,13 +24,16 @@ export class QuotesComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-
+        
         this.quotes$ = this.store
             .select(fromRoot.getQuotes)
             .pipe(map((quote: Map<string, Map<string, Quote>>) => quote));
-
+            
         this.dataStreamService.cryptoQuotes$
             .pipe(map((quotes) => new QuotesActions.SetQuotes(quotes)))
             .subscribe(this.store);
+
+        
+        
     }
 }

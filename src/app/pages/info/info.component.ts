@@ -18,6 +18,8 @@ export class InfoComponent implements OnInit {
     history$: Observable<Map<string, SymbolHistory>>;
     signals$: Observable<Map<string, TradingSignal>>;
     symbol: string;
+    currency: string;
+
 
     constructor(
         private dataService: DataService,
@@ -32,6 +34,7 @@ export class InfoComponent implements OnInit {
             currency: routeParams.get('currency'), 
             length: 30 
         };
+        this.currency = props.currency;
         this.symbol = props.symbol;
 
         this.history$ = this.store

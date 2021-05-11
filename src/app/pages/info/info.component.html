@@ -1,11 +1,15 @@
 <div class="info-container">
   <div style="height: 100%; padding-top: 20px; padding-bottom: 20px;">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{symbol}}</mat-card-title>
-        <mat-card-subtitle>Information</mat-card-subtitle>
+    <mat-card fxFlex="grow">
+      <mat-card-header fxLayout="row" fxLayoutAlign="space-between center">
+        <span style="flex: 1 1 auto;"></span>
+        <h2 style="margin: 0px;">{{symbol}}-{{currency}}</h2>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button routerLink="/">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-card-header>
-      <mat-card-content>
+      <mat-card-content fxLayout="column" fxLayoutAlign="space-between center">
         <div *ngIf="history$ | async as historyDataMap">
           <app-line-chart *ngFor="let historyData of historyDataMap | keyvalue" [data]="historyData"></app-line-chart>
         </div>

@@ -25,7 +25,7 @@ export class DataStreamService {
         this.socket.on('disconnect', (reason: string) => this.onSocketDisconnect(reason));
         // Manage quotes received from server
         this.socket.on('quote', (quote: Quote) => {
-            //this.onUpdateQuote(quote);
+            this.onUpdateQuote(quote);
         });
         // Handel errors
         this.socket.on('error', (error: Error) => console.error(error));

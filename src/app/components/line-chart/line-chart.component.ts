@@ -31,12 +31,13 @@ export class LineChartComponent implements OnInit {
     domain: ['#0060f5']
   };
 
-  constructor(private containerRef: ViewContainerRef ) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.populateChartData(this.data);
     this.view = [innerWidth / 1.3, 400];
   }
+
 
   populateChartData(_data) {
     const data = _data.value;
