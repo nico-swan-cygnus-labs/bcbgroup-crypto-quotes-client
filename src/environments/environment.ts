@@ -1,10 +1,10 @@
 export const environment = {
     production: false,
     api: {
-        url: 'http://localhost:3000'
+        url: 'https://bcbgroup-api.cygnus-labs.com'
     },
     socket: {
-        url: 'http://localhost:3001',
+        url: 'https://bcbgroup-ws.cygnus-labs.com',
         config: {}
     }
 };
