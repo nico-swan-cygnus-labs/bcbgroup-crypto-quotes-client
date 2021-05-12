@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Signal, TradingSignal } from 'app/core/interfaces/trading-signal.interface';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-cc-signals',
@@ -8,12 +9,30 @@ import { Signal, TradingSignal } from 'app/core/interfaces/trading-signal.interf
 })
 export class CcSignalsComponent implements OnInit {
 
-  @Input() data: TradingSignal
-  overviewSignal: string
-  inOutVar: string
-  largetxsVar: string
-  addressesNetGrowth: string
-  concentrationVar: string
+  @Input() data: TradingSignal;
+  overviewSignal: string;
+  inOutVar: string;
+  largetxsVar: string;
+  addressesNetGrowth: string;
+  concentrationVar: string;
+
+  inOutVarChartData: any[];
+  largetxsVarChartData: any[];
+  addressesNetGrowthChartData: any[];
+  concentrationVarChartData: any[];
+
+  view: any[] = [200, 150];
+  legend: boolean = false;
+  showText: boolean = false;
+  angleSpan: number = 180;
+  startAngle: number = -90;
+  max:number = 1;
+  showAxis: boolean = false;
+
+  colorScheme = {
+    domain: ['#0060f5']
+  };
+
   constructor() { }
 
   ngOnInit(): void {
@@ -24,15 +43,19 @@ export class CcSignalsComponent implements OnInit {
         switch (signal.name) {
           case 'inOutVar':
             this.inOutVar = signal.sentiment;
+            this.inOutVarChartData = [{ name: "inOutVar", value: signal.score }];
             break;
           case 'largetxsVar':
             this.largetxsVar = signal.sentiment;
+            this.largetxsVarChartData = [{ name: "largetxsVar", value: signal.score }];
             break;
           case 'addressesNetGrowth':
             this.addressesNetGrowth = signal.sentiment;
+            this.addressesNetGrowthChartData = [{ name: "addressesNetGrowth", value: signal.score }];
             break;
           case 'concentrationVar':
             this.concentrationVar = signal.sentiment;
+            this.concentrationVarChartData = [{ name: "concentrationVar", value: signal.score }];
             break;      
         } 
       });

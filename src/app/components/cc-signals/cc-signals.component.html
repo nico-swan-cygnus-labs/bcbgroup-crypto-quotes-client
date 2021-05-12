@@ -1,53 +1,85 @@
 <mat-card class="signals-card mat-elevation-z0">
     <mat-card-header>
-        <mat-card-title>Trading signals</mat-card-title>
-        <mat-card-subtitle>Sentiment is {{ overviewSignal }}</mat-card-subtitle>
+        <mat-card-title>Onchain Signals</mat-card-title>
+        <mat-card-subtitle>Sentiment is <span [class]="overviewSignal.toLowerCase()">{{ overviewSignal }}</span>
+        </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content fxLayout="column" fxLayoutAlign="space-evenly stretch">
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        In/out of the money is {{ inOutVar }}
+                        <span>In/out of the money is <span [class]="inOutVar">{{inOutVar}}</span></span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>This momentum signal calculates the net change of in/out of the money addresses, if the number of "In the Money"
-                addresses is increasing this would be a bullish signal. In the money means addresses that would make a profit on the
-                tokens they hold because they acquired the tokens at a lower price.</p>
+                <p>
+                    <ngx-charts-gauge [view]="view" [scheme]="colorScheme" [results]="inOutVarChartData"
+                        [showText]="showText" [legend]="legend" [angleSpan]="angleSpan" [startAngle]="startAngle"
+                        [max]="max" [showAxis]="showAxis">
+                    </ngx-charts-gauge>
+                </p>
+                <p>This momentum signal calculates the net change of in/out of the money addresses, if the number of "In
+                    the Money"
+                    addresses is increasing this would be a bullish signal. In the money means addresses that would make
+                    a profit on the
+                    tokens they hold because they acquired the tokens at a lower price.</p>
             </mat-expansion-panel>
         </mat-accordion>
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Large transactions is {{ largetxsVar }}
+                        <span>Large transactions is <span [class]="largetxsVar"> {{ largetxsVar }}</span></span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>Momentum signal that is bullish when the short term trend of the number of txs > $100k is greater than the long term
-                average.</p>
+                <p>
+                    <ngx-charts-gauge [view]="view" [scheme]="colorScheme" [results]="largetxsVarChartData"
+                        [showText]="showText" [legend]="legend" [angleSpan]="angleSpan" [startAngle]="startAngle"
+                        [max]="max" [showAxis]="showAxis">
+                    </ngx-charts-gauge>
+                </p>
+                <p>Momentum signal that is bullish when the short term trend of the number of txs > $100k is greater
+                    than the long term
+                    average.</p>
             </mat-expansion-panel>
         </mat-accordion>
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Addresses Net Growth is {{ addressesNetGrowth }}
+                        <span>Addresses Net Growth is <span [class]="addressesNetGrowth"> {{ addressesNetGrowth
+                                }}</span></span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>Momentum signal that gives an indication of the tokens underlying network health by measuring the amount of new
-                addresses minus the addresses that have their balances emptied. It is bullish when more addresses are being created than
-                emptied.</p>
+                <p>
+                    <ngx-charts-gauge [view]="view" [scheme]="colorScheme" [results]="addressesNetGrowthChartData"
+                        [showText]="showText" [legend]="legend" [angleSpan]="angleSpan" [startAngle]="startAngle"
+                        [max]="max" [showAxis]="showAxis">
+                    </ngx-charts-gauge>
+                </p>
+                <p>Momentum signal that gives an indication of the tokens underlying network health by measuring the
+                    amount of new
+                    addresses minus the addresses that have their balances emptied. It is bullish when more addresses
+                    are being created than
+                    emptied.</p>
             </mat-expansion-panel>
         </mat-accordion>
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Concentration is {{ concentrationVar }}
+                        <span>Concentration is <span [class]="concentrationVar"> {{ concentrationVar }}</span></span>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>The Concentration signal is based on the accumulation (bullish) or reduction (bearish) of addresses with more than 0.1%
-                of the circulating supply.</p>
+                <p>
+                    <ngx-charts-gauge [view]="view" [scheme]="colorScheme" [results]="concentrationVarChartData"
+                        [showText]="showText" [legend]="legend" [angleSpan]="angleSpan" [startAngle]="startAngle"
+                        [max]="max" [showAxis]="showAxis">
+                    </ngx-charts-gauge>
+                </p>
+                <p>The Concentration signal is based on the accumulation (bullish) or reduction (bearish) of addresses
+                    with more than 0.1%
+                    of the circulating supply.</p>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-card-content>
