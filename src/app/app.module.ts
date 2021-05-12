@@ -17,6 +17,7 @@ import { DataService } from './core/data/data.service';
 import * as fromRoot from './core/store';
 import { QuotesEffects } from './core/store/effects/quotes.effects';
 import { UiModule } from './ui/ui.module';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UiModule } from './ui/ui.module';
     EffectsModule.forRoot([QuotesEffects]),
     StoreModule.forRoot(fromRoot.reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ScullyLibModule,
   ],
   providers: [DataService, DataStreamService],
   bootstrap: [AppComponent]

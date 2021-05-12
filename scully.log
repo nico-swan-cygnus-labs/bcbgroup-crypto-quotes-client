@@ -1,0 +1,9 @@
+No configuration for route "/info/:symbol/:currency" found. Skipping
+Closed serversReceived Kill command
+
+
+----------------------------------
+Using stored unhandled routes!.
+   To discover new routes in the angular app use "npm run scully -- --scanRoutes"
+----------------------------------No configuration for route "/info/:symbol/:currency" found. Skipping
+

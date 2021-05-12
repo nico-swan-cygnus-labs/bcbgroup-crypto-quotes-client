@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "scully": "npx scully --",
+    "scully:serve": "npx scully serve --"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +31,9 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@ngrx/effects": "^11.1.1",
     "@ngrx/store": "^11.1.1",
+    "@scullyio/init": "^1.1.4",
+    "@scullyio/ng-lib": "^1.0.0",
+    "@scullyio/scully": "^1.0.0",
     "@swimlane/ngx-charts": "^17.0.1",
     "d3-shape": "^2.1.0",
     "rxjs": "~6.6.0",
